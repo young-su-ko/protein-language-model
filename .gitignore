@@ -1,0 +1,10 @@
+slurm_outputs/
+checkpoints/
+wandb/
+*.sh
+data/val.fasta
+data/train.fasta
+outputs/
+transformers_esm/
+.pytest_cache/
+*.pyc

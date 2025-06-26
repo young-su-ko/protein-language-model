@@ -1,0 +1,44 @@
+defaults:
+  - _self_
+
+model:
+  num_layers: 12
+  embed_dim: 768
+  num_heads: 12
+  ffn_embed_dim: 2048
+  initializer_range: 0.02
+  layer_norm_eps: 1e-12
+  bias: False
+  objective: "mlm" # "mlm" or "clm"
+  weight_tying: True
+
+
+training:
+  max_steps: 20_000
+  batch_size: 128
+  accumulate_grad_batches: 16 # trying to simulate ~1 million tokens per update, which is 128*512*16
+  learning_rate: 1e-3
+  beta1: 0.9
+  beta2: 0.98
+  eps: 1e-12
+  warmup_steps: 1000 
+  gradient_clip_val: 0.5
+  
+data:
+  train_file: "/new-stg/home/young/protein-language-model/data/train.fasta"
+  val_file: "/new-stg/home/young/protein-language-model/data/val.fasta"
+  max_seq_length: 512
+  mask_prob: 0.25
+
+logging:
+  project_name: "prescient_mlm_optimized"
+  log_every_n_steps: 1
+  run_name: "mlm_test"
+  
+trainer:
+  accelerator: "gpu"
+  devices: "auto"
+  strategy: "auto"
+  precision: "16-mixed" 
+  num_workers: 2
+  prefetch_factor: 2
