@@ -5,6 +5,7 @@ import torch
 from typing import Optional, List, Dict
 from Bio import SeqIO
 from myplm.tokenizer import Alphabet
+import random
 
 def collate_batch(batch: List[Dict[str, torch.Tensor]]) -> Dict[str, torch.Tensor]:
     input_ids = torch.stack([item['input_ids'] for item in batch])
@@ -36,13 +37,13 @@ class ProteinDataset(Dataset):
     def __len__(self):
         return len(self.sequences)
 
-    def __getitem__(self, idx):
+    def __getitem__(self, idx) -> Dict[str, torch.Tensor]:
         tokens = self.tokenizer.encode(self.sequences[idx])
         input_ids = torch.full((self.max_length,), self.tokenizer.pad_idx, dtype=torch.long)
         labels = torch.full((self.max_length,), self.tokenizer.pad_idx, dtype=torch.long)
 
         if len(tokens) > self.max_length: # truncate
-            start = torch.randint(0, len(tokens) - self.max_length + 1, (1,)).item()
+            start = random.randint(0, len(tokens) - self.max_length)
             tokens = tokens[start:start + self.max_length]
         input_ids[:len(tokens)] = torch.tensor(tokens, dtype=torch.long)
         
