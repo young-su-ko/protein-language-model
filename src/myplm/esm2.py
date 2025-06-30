@@ -1,8 +1,8 @@
 from typing import Union, Optional
 from torch import Tensor
 import torch.nn as nn
-from src.submodules import TransformerBlock, LMHead
-from src.tokenizer import Alphabet
+from myplm.submodules import TransformerBlock, LMHead
+from myplm.tokenizer import Alphabet
 from torch.nn import LayerNorm
 
 class ESM2(nn.Module):

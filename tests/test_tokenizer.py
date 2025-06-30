@@ -1,4 +1,4 @@
-from src.tokenizer import Alphabet
+from myplm.tokenizer import Alphabet
 
 def test_alphabet_size():
     alphabet = Alphabet()

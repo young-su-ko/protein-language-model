@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import LambdaLR
-from src.model.esm2 import ESM2
+from myplm.esm2 import ESM2
 from transformers import get_linear_schedule_with_warmup
 
 class LitESM(pl.LightningModule):

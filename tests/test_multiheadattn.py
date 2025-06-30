@@ -1,5 +1,5 @@
 import torch
-from src.multihead_attention import MultiHeadAttention
+from myplm.multihead_attention import MultiHeadAttention
 
 def test_forward_shape():
     B, L, D = 2, 5, 8

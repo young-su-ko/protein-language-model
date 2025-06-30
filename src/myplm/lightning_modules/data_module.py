@@ -1,10 +1,10 @@
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader, Dataset
-from src.model.esm2 import ESM2
+from myplm.esm2 import ESM2
 import torch
 from typing import Optional, List, Dict
 from Bio import SeqIO
-from src.model.esm2 import Alphabet
+from myplm.tokenizer import Alphabet
 
 def collate_batch(batch: List[Dict[str, torch.Tensor]]) -> Dict[str, torch.Tensor]:
     input_ids = torch.stack([item['input_ids'] for item in batch])

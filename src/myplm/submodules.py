@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
 from torch.nn import LayerNorm, RMSNorm
-from src.multihead_attention import MultiHeadAttention
+from myplm.multihead_attention import MultiHeadAttention
 
 class TransformerBlock(nn.Module):
     def __init__(

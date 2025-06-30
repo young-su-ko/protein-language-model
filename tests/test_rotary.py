@@ -1,5 +1,5 @@
 import torch
-from src.rotary_embedding import rotate_half, apply_rotary_pos_emb, RotaryEmbedding
+from myplm.rotary_embedding import rotate_half, apply_rotary_pos_emb, RotaryEmbedding
 
 def test_rotate_half():
     x = torch.tensor([[1.0, 2.0, 3.0, 4.0]])

@@ -6,8 +6,8 @@ from pytorch_lightning.loggers import WandbLogger
 import wandb
 import torch
 
-from src.lightning_modules.lit_esm import LitESM
-from src.lightning_modules.data_module import ProteinDataModule
+from myplm.lightning_modules.lit_esm import LitESM
+from myplm.lightning_modules.data_module import ProteinDataModule
 
 @hydra.main(config_path="config", config_name="config")
 def main(config: DictConfig):

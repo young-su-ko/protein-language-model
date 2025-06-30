@@ -8,3 +8,6 @@ outputs/
 transformers_esm/
 .pytest_cache/
 *.pyc
+*.egg-info/
+.python-version
+.venv/

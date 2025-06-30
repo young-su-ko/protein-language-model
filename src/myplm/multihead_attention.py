@@ -3,7 +3,7 @@ import torch
 import torch.nn.functional as F
 from torch import Tensor, nn
 from einops import rearrange
-from src.rotary_embedding import RotaryEmbedding
+from myplm.rotary_embedding import RotaryEmbedding
 
 # class MultiHeadAttention(nn.Module):
 #     def __init__(self, embed_dim: int, num_heads: int, bias: bool = True, use_rotary_embedding: bool = True):

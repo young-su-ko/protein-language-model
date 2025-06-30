@@ -1,4 +1,4 @@
-from src.constants import proteinseq_toks
+from myplm.constants import proteinseq_toks
 import torch
 
 class Alphabet:
