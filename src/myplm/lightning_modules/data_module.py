@@ -52,8 +52,8 @@ class ProteinDataset(Dataset):
 
         if self.objective == "mlm":
             special_mask = self.tokenizer.special_toks_mask[input_ids]
-            candidate_mask = attn_mask & ~special_mask
-            mask_tokens = (torch.rand(self.max_length) < self.mask_prob) & candidate_mask
+            candidates = attn_mask & ~special_mask
+            mask_tokens = (torch.rand(self.max_length) < self.mask_prob) & candidates
             labels[mask_tokens] = input_ids[mask_tokens]
             input_ids[mask_tokens] = self.tokenizer.mask_idx
             attn_mask = attn_mask.unsqueeze(0).unsqueeze(1) # [1, 1, L]
@@ -64,9 +64,9 @@ class ProteinDataset(Dataset):
             attn_mask = torch.tril(square_mask).bool().unsqueeze(0) # [1, L, L]
 
         return {
-            "input_ids": input_ids, # [B, L]
-            "labels": labels,       # [B, L]
-            "attn_mask": attn_mask  # [B, 1, 1, L] for MLM or [B, 1, L, L] for CLM
+            "input_ids": input_ids, # [L]
+            "labels": labels,       # [L]
+            "attn_mask": attn_mask  # [1, 1, L] for MLM or [1, L, L] for CLM
         }
 
 class ProteinDataModule(pl.LightningDataModule):
